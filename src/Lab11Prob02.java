@@ -14,7 +14,7 @@ import java.io.FileOutputStream;
 */
 
 
-public class Lab11Prob01 {
+public class Lab11Prob02 {
 	public static void main(String[] args) {
 
 		try (DataInputStream input = new DataInputStream(new FileInputStream("src/people.dat"));
@@ -45,6 +45,7 @@ public class Lab11Prob01 {
 
 	}
 }
+
 
 
 
