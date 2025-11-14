@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 /**
 * File: Person.java
 * Class: CSCI 1302
@@ -7,7 +9,7 @@
 * Description: 
 */
 
-public class Person implements Comparable<Person> {
+public class Person implements Comparable<Person>, Serializable {
 	private int age;
 	private String name;
 	private String address;
@@ -18,8 +20,16 @@ public class Person implements Comparable<Person> {
 		
 	}
 	
+	public Person(int age, String name, String address, int zipCode, double salary) {
+		setAge(age);
+		setName(name);
+		setAddress(address);
+		setZipCode(zipCode);
+		setSalary(salary);
+	}
+	
 	public String toString() {
-		return String.format("%d %s %s %d $%,.2f\n", getAge(), getName(), getAddress(), getZipCode(), getSalary());
+		return String.format("%d %s %s %d $%,.2f", getAge(), getName(), getAddress(), getZipCode(), getSalary());
 	}
 	
 	public int getAge() {
@@ -56,9 +66,9 @@ public class Person implements Comparable<Person> {
 	@Override
 	public int compareTo(Person o) {
 		if (getSalary() > o.getSalary())
-			return 1;
-		else if (getSalary() < o.getSalary())
 			return -1;
+		else if (getSalary() < o.getSalary())
+			return 1;
 		else
 			return 0;
 	}

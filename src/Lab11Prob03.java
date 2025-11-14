@@ -3,6 +3,7 @@ import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * Created on: Nov 14, 2025 Last Modified: Nov 14, 2025 Description:
  */
 
-public class Lab11Prob02 {
+public class Lab11Prob03 {
 	public static void main(String[] args) {
 		ArrayList<Person> personList = new ArrayList<>();
 
@@ -34,12 +35,13 @@ public class Lab11Prob02 {
 			System.out.println("An error occurred");
 		}
 
-		try (DataOutputStream output = new DataOutputStream(new FileOutputStream("src/people-salary-sorted.dat"));) {
+		try (ObjectOutputStream output =
+				new ObjectOutputStream(new FileOutputStream("src/people-salary-sorted-objects.dat"));) {
 
 			java.util.Collections.sort(personList);
 			for (int i = 0; i < personList.size(); i++) {
 				System.out.println(personList.get(i).toString());
-				output.writeUTF(personList.get(i).toString());
+				output.writeObject(personList.get(i));
 			}
 		} catch (EOFException ex) {
 
